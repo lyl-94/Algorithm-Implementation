@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 // 非递归自下而上实现
-public class MergeSort {
+public class MergeSort{
 
     public static void mergeSort(List<Integer> array){
         int size = 1;
@@ -52,10 +52,45 @@ public class MergeSort {
         System.out.println(array);
     }
 }
+//非递归数组实现
+class MergeSort非递归数组实现{
+
+    public static int[] mergeSort(int[] array){
+        int size = 1;
+        int[] tmp = new int[array.length];
+        while(size < array.length){
+            int index = 0;
+            while(index < array.length){
+                int i = index, j = index + size, point = index;
+                while(true){
+                    boolean left = i < index + size && i < array.length;
+                    boolean right = j < index + 2*size && j < array.length;
+                    if ((!right && left) || (left && array[i] < array[j])){
+                        tmp[point++] = array[i++];
+                    }else if (right){
+                        tmp[point++] = array[j++];
+                    }else {
+                        break;
+                    }
+                }
+                index += size*2;
+            }
+            array = Arrays.copyOf(tmp, array.length);
+            size *= 2;
+        }
+        return array;
+    }
+
+    public static void main(String[] args){
+        int[] array = {5,1,7,3,4,6,8,2,3,0,9,8,7};
+        System.out.println(Arrays.toString(mergeSort(array)));
+    }
+}
 
 
-//递归实现
-class MergeSort递归实现{
+
+//递归数组实现
+class MergeSort递归数组实现{
 
     public static void merge(int[] array, int start, int end){
         int[] tmp = new int[end-start + 1];

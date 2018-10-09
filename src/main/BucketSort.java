@@ -34,3 +34,30 @@ public class BucketSort {
         System.out.println(array);
     }
 }
+
+class BucketSort数组实现{
+
+    public static void bucketSort(int[] array){
+        int max = array[0];
+        for (int i=0;i<array.length;i++){
+            max = max > array[i]? max : array[i];
+        }
+        int[] bucket = new int[max+1];
+        for (int i=0;i<array.length;i++){
+            bucket[array[i]]++;
+        }
+        for (int i=0, k=0;i<bucket.length;i++){
+            if (bucket[i]!=0){
+                for (int j=0;j<bucket[i];j++){
+                    array[k++] = i;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args){
+        int[] array = {5,1,7,3,4,6,8,2,3};
+        bucketSort(array);
+        System.out.println(Arrays.toString(array));
+    }
+}
