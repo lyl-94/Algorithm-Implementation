@@ -1,0 +1,7 @@
+# idea config files
+.idea/
+*.iml
+
+# "temporary" build files
+out/
+target/
